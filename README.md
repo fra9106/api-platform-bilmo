@@ -1,4 +1,4 @@
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6b8b7f62ee6543c9b048718a88b773b0)](https://www.codacy.com/gh/fra9106/api-platform-bilmo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fra9106/api-platform-bilmo&amp;utm_campaign=Badge_Grade)
 
 Projet 7 API-REST Openclarooms Bilmo
 
