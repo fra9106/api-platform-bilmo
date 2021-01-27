@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -12,7 +11,18 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity("email", message="email déjà utilisé !")
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={
+ *         "get"={
+ *             "normalization_context"={"groups"={"users-list:read"}}
+ *         }
+ *     },
+ *     itemOperations={
+ *         "get"={
+ *             "normalization_context"={"groups"={"user:read"}}
+ *         }
+ *     },
+ * )
  */
 class User
 {
@@ -26,19 +36,19 @@ class User
 
     /**
      * @ORM\Column(type="string", length=180)
-     * @Groups({"users-list:read", "user:read", "shop:read"})
+     * @Groups({"user:read", "shop:read", "shop:read"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read"}) 
+     * @Groups({"users-list:read", "user:read","shop:read" }) 
      */
     private $first_name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read"}) 
+     * @Groups({"users-list:read", "user:read", "shop:read"}) 
      */
     private $last_name;
 

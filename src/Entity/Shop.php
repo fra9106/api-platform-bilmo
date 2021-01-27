@@ -7,11 +7,23 @@ use App\Repository\ShopRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ShopRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *      collectionOperations={
+ *         "get"={
+ *             "normalization_context"={"groups"={"shops-list:read"}}
+ *         }
+ *     },
+ *     itemOperations={
+ *         "get"={
+ *             "normalization_context"={"groups"={"shop:read"}}
+ *         }
+ *     },
+ * )
  */
 class Shop implements UserInterface
 {
@@ -19,11 +31,13 @@ class Shop implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"shops-list:read", "shop:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"shop:read"})
      */
     private $email;
 
@@ -40,21 +54,25 @@ class Shop implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"shops-list:read", "shop:read"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"shop:read"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"shop:read"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"shop:read"})
      */
     private $arrival_date;
 
