@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity("email", message="email déjà utilisé !")
  * @ApiResource(
+ *      paginationItemsPerPage=5,
  *      collectionOperations={
  *         "get"={
  *             "normalization_context"={"groups"={"users-list:read"}}

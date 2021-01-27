@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=PhoneRepository::class)
  * @ApiResource(
+ *      paginationItemsPerPage=5,
  *      collectionOperations={
  *         "get"={
  *             "normalization_context"={"groups"={"phones-list:read"}}
