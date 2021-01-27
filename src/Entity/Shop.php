@@ -78,6 +78,7 @@ class Shop implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="shop", orphanRemoval=true)
+     * @Groups("shop:read")
      */
     private $users;
 
