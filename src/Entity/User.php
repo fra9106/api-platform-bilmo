@@ -5,11 +5,14 @@ namespace App\Entity;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity("email", message="email déjà utilisé !")
+ * @ApiResource()
  */
 class User
 {
@@ -17,41 +20,49 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"users-list:read", "user:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180)
+     * @Groups({"users-list:read", "user:read", "shop:read"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user:read"}) 
      */
     private $first_name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user:read"}) 
      */
     private $last_name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user:read"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"user:read"})
      */
     private $postal_code;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"user:read"}) 
      */
     private $city;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"user:read"})
      */
     private $created_at;
 
