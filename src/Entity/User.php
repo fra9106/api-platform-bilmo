@@ -55,6 +55,12 @@ class User
      */
     private $created_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="users", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $shop;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -144,4 +150,15 @@ class User
         return $this;
     }
 
+    public function getShop(): ?Shop
+    {
+        return $this->shop;
+    }
+
+    public function setShop(?Shop $shop): self
+    {
+        $this->shop = $shop;
+
+        return $this;
+    }
 }
