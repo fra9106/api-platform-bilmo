@@ -14,11 +14,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ApiResource(
  *      paginationItemsPerPage=5,
  *      collectionOperations={
+ *         "post",
  *         "get"={
  *             "normalization_context"={"groups"={"users-list:read"}}
  *         }
  *     },
  *     itemOperations={
+ *         "delete",
  *         "get"={
  *             "normalization_context"={"groups"={"user:read"}}
  *         }

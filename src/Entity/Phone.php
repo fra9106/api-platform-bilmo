@@ -13,11 +13,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource(
  *      paginationItemsPerPage=5,
  *      collectionOperations={
+ *         "post",
  *         "get"={
  *             "normalization_context"={"groups"={"phones-list:read"}}
  *         }
  *     },
  *     itemOperations={
+ *         "delete",
+ *         "put",
  *         "get"={
  *             "normalization_context"={"groups"={"phone:read"}}
  *         }
