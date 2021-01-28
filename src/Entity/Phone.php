@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -13,19 +15,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource(
  *      paginationItemsPerPage=5,
  *      collectionOperations={
- *         "post",
- *         "get"={
+ *        "get"={
  *             "normalization_context"={"groups"={"phones-list:read"}}
- *         }
+ *        },
+ *        "post"
  *     },
  *     itemOperations={
- *         "delete",
- *         "put",
  *         "get"={
  *             "normalization_context"={"groups"={"phone:read"}}
- *         }
- *     },
- * )
+ *         },
+ *         "delete",
+ *         "put"
+ *     }
+ *)
  */
 class Phone
 {

@@ -14,17 +14,17 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ApiResource(
  *      paginationItemsPerPage=5,
  *      collectionOperations={
- *         "post",
  *         "get"={
  *             "normalization_context"={"groups"={"users-list:read"}}
- *         }
+ *         },
+ *         "post"
  *     },
  *     itemOperations={
- *         "delete",
  *         "get"={
  *             "normalization_context"={"groups"={"user:read"}}
- *         }
- *     },
+ *         },
+ *         "delete"
+ *     }
  * )
  */
 class User
@@ -81,7 +81,7 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="users", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"user:read"})
      */
     private $shop;
 
