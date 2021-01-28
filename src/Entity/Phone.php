@@ -31,14 +31,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Phone
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Groups({"phones-list:read", "phone:read"})
-     */
-    private $id;
 
+    use ResourceId;
+    
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"phones-list:read", "phone:read"})
@@ -62,11 +57,6 @@ class Phone
      * @Groups({"phone:read"})
      */
     private $price;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getModel(): ?string
     {

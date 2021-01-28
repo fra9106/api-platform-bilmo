@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -29,13 +31,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Groups({"users-list:read", "user:read"})
-     */
-    private $id;
+
+    use ResourceId;
 
     /**
      * @ORM\Column(type="string", length=180)
@@ -84,11 +81,6 @@ class User
      * @Groups({"user:read"})
      */
     private $shop;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getEmail(): ?string
     {
