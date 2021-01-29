@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *        },
  *        "post"={
  *              "security"="is_granted('ROLE_ADMIN')",
+ *               "security_message"="Vous n'avez pas les droits administrateur suffisant pour ajouter un produit!"
  *        },
  *     },
  *     itemOperations={
@@ -28,9 +29,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         },
  *         "delete"={
  *              "security"="is_granted('ROLE_ADMIN')",
+ *              "security_message"="Vous n'avez pas les droits administrateur suffisant pour supprimer un produit!"
  *          },
  *         "put"={
  *             "security"="is_granted('ROLE_ADMIN')",
+ *             "security_message"="Vous n'avez pas les droits administrateur suffisant pour modifier un produit!"
  *          },
  *     }
  *)

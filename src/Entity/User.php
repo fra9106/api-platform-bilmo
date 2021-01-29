@@ -26,9 +26,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *             "normalization_context"={"groups"={"user:read"}}
  *         },
  *         "delete"={
- *              "security"="is_granted('CAN_DELETE')",
+ *             "security"="(is_granted('ROLE_ADMIN') or object.getShop() == user)",
+ *             "security_message"="Vous n'êtes pas autorisé à supprimer cet utilisateur!"
  *          },
- *     }
+ *     },
  * )
  */
 class User
