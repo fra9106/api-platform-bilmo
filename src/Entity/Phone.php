@@ -18,14 +18,20 @@ use Symfony\Component\Validator\Constraints as Assert;
  *        "get"={
  *             "normalization_context"={"groups"={"phones-list:read"}}
  *        },
- *        "post"
+ *        "post"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *        },
  *     },
  *     itemOperations={
  *         "get"={
  *             "normalization_context"={"groups"={"phone:read"}}
  *         },
- *         "delete",
- *         "put"
+ *         "delete"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *          },
+ *         "put"={
+ *             "security"="is_granted('ROLE_ADMIN')",
+ *          },
  *     }
  *)
  */
@@ -33,7 +39,7 @@ class Phone
 {
 
     use ResourceId;
-    
+
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"phones-list:read", "phone:read"})

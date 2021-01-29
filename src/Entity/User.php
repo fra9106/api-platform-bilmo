@@ -25,7 +25,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *         "get"={
  *             "normalization_context"={"groups"={"user:read"}}
  *         },
- *         "delete"
+ *         "delete"={
+ *              "security"="is_granted('CAN_DELETE')",
+ *          },
  *     }
  * )
  */
