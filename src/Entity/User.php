@@ -81,6 +81,7 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="users", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      * @Groups({"user:read"})
      */
     private $shop;
