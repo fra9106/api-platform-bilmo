@@ -18,26 +18,30 @@ use Symfony\Component\Validator\Constraints as Assert;
  *        "get"={
  *             "normalization_context"={"groups"={"phones-list:read"}}
  *        },
- *        "post"
+ *        "post"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *               "security_message"="Vous n'avez pas les droits administrateur suffisant pour ajouter un produit!"
+ *        },
  *     },
  *     itemOperations={
  *         "get"={
  *             "normalization_context"={"groups"={"phone:read"}}
  *         },
- *         "delete",
- *         "put"
+ *         "delete"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "security_message"="Vous n'avez pas les droits administrateur suffisant pour supprimer un produit!"
+ *          },
+ *         "put"={
+ *             "security"="is_granted('ROLE_ADMIN')",
+ *             "security_message"="Vous n'avez pas les droits administrateur suffisant pour modifier un produit!"
+ *          },
  *     }
  *)
  */
 class Phone
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Groups({"phones-list:read", "phone:read"})
-     */
-    private $id;
+
+    use ResourceId;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -62,11 +66,6 @@ class Phone
      * @Groups({"phone:read"})
      */
     private $price;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getModel(): ?string
     {

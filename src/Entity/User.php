@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -23,19 +25,17 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *         "get"={
  *             "normalization_context"={"groups"={"user:read"}}
  *         },
- *         "delete"
- *     }
+ *         "delete"={
+ *             "security"="(is_granted('ROLE_ADMIN') or object.getShop() == user)",
+ *             "security_message"="Vous n'êtes pas autorisé à supprimer cet utilisateur!"
+ *          },
+ *     },
  * )
  */
 class User
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Groups({"users-list:read", "user:read"})
-     */
-    private $id;
+
+    use ResourceId;
 
     /**
      * @ORM\Column(type="string", length=180)
@@ -81,14 +81,10 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="users", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      * @Groups({"user:read"})
      */
     private $shop;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getEmail(): ?string
     {

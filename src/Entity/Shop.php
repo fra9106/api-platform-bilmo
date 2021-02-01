@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -27,13 +29,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class Shop implements UserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @Groups({"shops-list:read", "shop:read"})
-     */
-    private $id;
+
+    use ResourceId;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -85,11 +82,6 @@ class Shop implements UserInterface
     public function __construct()
     {
         $this->users = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getEmail(): ?string
